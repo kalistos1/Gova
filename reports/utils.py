@@ -9,7 +9,7 @@ import requests
 from PIL import Image
 from PIL.ExifTags import TAGS, GPSTAGS
 from django.conf import settings
-from django.contrib.gis.geos import Point
+# from django.contrib.gis.geos import Point
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 import httpx
@@ -112,61 +112,61 @@ def extract_exif_location(image_path: str) -> Optional[tuple[float, float]]:
         logger.error(f'Error extracting EXIF data: {str(e)}')
         return None 
 
-def extract_location_from_exif(image_file) -> Optional[Point]:
-    """Extract GPS coordinates from image EXIF data.
+# def extract_location_from_exif(image_file) -> Optional[Point]:
+#     """Extract GPS coordinates from image EXIF data.
     
-    Args:
-        image_file: Image file object
+#     Args:
+#         image_file: Image file object
         
-    Returns:
-        Point object with coordinates or None
-    """
-    try:
-        image = Image.open(image_file)
-        exif = image._getexif()
+#     Returns:
+#         Point object with coordinates or None
+#     """
+#     try:
+#         image = Image.open(image_file)
+#         exif = image._getexif()
         
-        if not exif:
-            return None
+#         if not exif:
+#             return None
             
-        # Get EXIF tags
-        gps_info = {}
-        for tag, value in exif.items():
-            decoded = TAGS.get(tag, tag)
-            if decoded == 'GPSInfo':
-                for gps_tag in value:
-                    sub_decoded = GPSTAGS.get(gps_tag, gps_tag)
-                    gps_info[sub_decoded] = value[gps_tag]
+#         # Get EXIF tags
+#         gps_info = {}
+#         for tag, value in exif.items():
+#             decoded = TAGS.get(tag, tag)
+#             if decoded == 'GPSInfo':
+#                 for gps_tag in value:
+#                     sub_decoded = GPSTAGS.get(gps_tag, gps_tag)
+#                     gps_info[sub_decoded] = value[gps_tag]
         
-        if not gps_info:
-            return None
+#         if not gps_info:
+#             return None
             
-        # Extract latitude
-        lat_dms = gps_info.get('GPSLatitude')
-        lat_ref = gps_info.get('GPSLatitudeRef')
+#         # Extract latitude
+#         lat_dms = gps_info.get('GPSLatitude')
+#         lat_ref = gps_info.get('GPSLatitudeRef')
         
-        if not lat_dms or not lat_ref:
-            return None
+#         if not lat_dms or not lat_ref:
+#             return None
             
-        lat = lat_dms[0] + lat_dms[1]/60 + lat_dms[2]/3600
-        if lat_ref == 'S':
-            lat = -lat
+#         lat = lat_dms[0] + lat_dms[1]/60 + lat_dms[2]/3600
+#         if lat_ref == 'S':
+#             lat = -lat
             
-        # Extract longitude
-        lon_dms = gps_info.get('GPSLongitude')
-        lon_ref = gps_info.get('GPSLongitudeRef')
+#         # Extract longitude
+#         lon_dms = gps_info.get('GPSLongitude')
+#         lon_ref = gps_info.get('GPSLongitudeRef')
         
-        if not lon_dms or not lon_ref:
-            return None
+#         if not lon_dms or not lon_ref:
+#             return None
             
-        lon = lon_dms[0] + lon_dms[1]/60 + lon_dms[2]/3600
-        if lon_ref == 'W':
-            lon = -lon
+#         lon = lon_dms[0] + lon_dms[1]/60 + lon_dms[2]/3600
+#         if lon_ref == 'W':
+#             lon = -lon
             
-        return Point(lon, lat)
+#         return Point(lon, lat)
         
-    except Exception as e:
-        logger.error(f'Error extracting EXIF data: {str(e)}')
-        return None
+#     except Exception as e:
+#         logger.error(f'Error extracting EXIF data: {str(e)}')
+#         return None
 
 def _convert_to_degrees(value):
     """Helper function to convert GPS coordinates to decimal degrees."""

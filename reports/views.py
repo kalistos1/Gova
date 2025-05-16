@@ -66,7 +66,7 @@ from .permissions import (
 )
 from .utils import (
     sanitize_text,
-    extract_location_from_exif,
+    # extract_location_from_exif,
     generate_ai_summary,
     calculate_ai_priority,
     translate_text,

@@ -15,4 +15,4 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'gova.settings')
 
 application = get_wsgi_application()
 
-app = application # this is for vercel
+# app = application # this is for vercel

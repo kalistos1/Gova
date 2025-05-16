@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from .models import Report, ReportComment, AuditLog
 from core.models import Landmark, Location
 from accounts.models import User  # Assuming User model is in users app
-from django.contrib.gis.geos import Point
+# from django.contrib.gis.geos import Point
 from django.contrib.auth import get_user_model
 from django.db.models import Q
 
