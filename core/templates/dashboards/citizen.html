@@ -1,0 +1,244 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Citizen Dashboard - AbiaHub{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Welcome Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="h3">Welcome, {{ user.get_full_name|default:user.username }}</h1>
+            <p class="text-muted">Track your reports, proposals, and service requests.</p>
+        </div>
+    </div>
+    
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+        <!-- Reports Stats -->
+        <div class="col-md-3 mb-3">
+            <div class="card card-dashboard bg-primary text-white">
+                <div class="card-body">
+                    <h5 class="card-title">My Reports</h5>
+                    <h2 class="display-4">{{ reports_count }}</h2>
+                    <p class="mb-0">
+                        <span class="badge bg-light text-primary">{{ pending_reports_count }} Pending</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Proposals Stats -->
+        <div class="col-md-3 mb-3">
+            <div class="card card-dashboard bg-success text-white">
+                <div class="card-body">
+                    <h5 class="card-title">My Proposals</h5>
+                    <h2 class="display-4">{{ proposals_count }}</h2>
+                    <p class="mb-0">
+                        <span class="badge bg-light text-success">{{ votes_received }} Votes</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Services Stats -->
+        <div class="col-md-3 mb-3">
+            <div class="card card-dashboard bg-info text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Service Requests</h5>
+                    <h2 class="display-4">{{ services_count }}</h2>
+                    <p class="mb-0">
+                        <span class="badge bg-light text-info">{{ active_services }} Active</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Rewards Stats -->
+        <div class="col-md-3 mb-3">
+            <div class="card card-dashboard bg-warning text-dark">
+                <div class="card-body">
+                    <h5 class="card-title">My Rewards</h5>
+                    <h2 class="display-4">{{ rewards_count }}</h2>
+                    <p class="mb-0">
+                        <span class="badge bg-light text-warning">{{ airtime_rewards }} Airtime</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Recent Activity -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <div class="card card-dashboard">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">Recent Reports</h5>
+                    <a href="{% url 'reports:create' %}" class="btn btn-primary btn-sm">
+                        <i class="fas fa-plus"></i> New Report
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div id="reports-list"
+                         hx-get="{% url 'reports:user_list' %}"
+                         hx-trigger="load"
+                         hx-swap="innerHTML">
+                        <div class="text-center">
+                            <div class="spinner-border spinner-border-sm"></div>
+                            Loading reports...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <!-- Quick Actions -->
+            <div class="card card-dashboard mb-4">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Quick Actions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'reports:create' %}" class="btn btn-outline-primary">
+                            <i class="fas fa-flag"></i> Report Issue
+                        </a>
+                        <a href="{% url 'proposals:create' %}" class="btn btn-outline-success">
+                            <i class="fas fa-lightbulb"></i> Submit Proposal
+                        </a>
+                        <a href="{% url 'services:request' %}" class="btn btn-outline-info">
+                            <i class="fas fa-cogs"></i> Request Service
+                        </a>
+                        <a href="{% url 'grants:apply' %}" class="btn btn-outline-warning">
+                            <i class="fas fa-hand-holding-usd"></i> Apply for Grant
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Upcoming Deadlines -->
+            <div class="card card-dashboard">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Upcoming Deadlines</h5>
+                </div>
+                <div class="card-body">
+                    <div id="deadlines-list"
+                         hx-get="{% url 'services:deadlines' %}"
+                         hx-trigger="load"
+                         hx-swap="innerHTML">
+                        <div class="text-center">
+                            <div class="spinner-border spinner-border-sm"></div>
+                            Loading deadlines...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Recent Proposals and Services -->
+    <div class="row">
+        <!-- Recent Proposals -->
+        <div class="col-md-6 mb-4">
+            <div class="card card-dashboard">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">My Proposals</h5>
+                    <a href="{% url 'proposals:list' %}" class="btn btn-link btn-sm">View All</a>
+                </div>
+                <div class="card-body">
+                    <div id="proposals-list"
+                         hx-get="{% url 'proposals:user_list' %}"
+                         hx-trigger="load"
+                         hx-swap="innerHTML">
+                        <div class="text-center">
+                            <div class="spinner-border spinner-border-sm"></div>
+                            Loading proposals...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Active Services -->
+        <div class="col-md-6 mb-4">
+            <div class="card card-dashboard">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">Active Services</h5>
+                    <a href="{% url 'services:list' %}" class="btn btn-link btn-sm">View All</a>
+                </div>
+                <div class="card-body">
+                    <div id="services-list"
+                         hx-get="{% url 'services:user_list' %}"
+                         hx-trigger="load"
+                         hx-swap="innerHTML">
+                        <div class="text-center">
+                            <div class="spinner-border spinner-border-sm"></div>
+                            Loading services...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Voice Input Modal -->
+<div class="modal fade" id="voiceInputModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Voice Input</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center mb-3">
+                    <button class="btn btn-lg btn-primary rounded-circle voice-input-button">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+                <div class="form-floating">
+                    <textarea class="form-control" id="voiceText" style="height: 100px"></textarea>
+                    <label for="voiceText">Speak your message...</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="submitVoiceInput">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Voice input handler
+    $('#submitVoiceInput').on('click', function() {
+        const text = $('#voiceText').val();
+        if (text) {
+            // Submit to appropriate endpoint based on selected action
+            const action = $(this).data('action');
+            const url = action === 'report' ? '{% url "reports:create" %}' :
+                       action === 'proposal' ? '{% url "proposals:create" %}' :
+                       '{% url "services:request" %}';
+            
+            // Submit form
+            $('<form>')
+                .attr('method', 'POST')
+                .attr('action', url)
+                .append($('<input>').attr('type', 'hidden').attr('name', 'description').val(text))
+                .append($('<input>').attr('type', 'hidden').attr('name', 'csrfmiddlewaretoken').val('{{ csrf_token }}'))
+                .appendTo('body')
+                .submit();
+        }
+    });
+    
+    // Update stats periodically
+    setInterval(function() {
+        htmx.trigger('#reports-list', 'load');
+        htmx.trigger('#proposals-list', 'load');
+        htmx.trigger('#services-list', 'load');
+        htmx.trigger('#deadlines-list', 'load');
+    }, 300000); // Every 5 minutes
+</script>
+{% endblock %}

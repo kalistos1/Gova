@@ -1,0 +1,433 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOVA</title>
+    <!-- fav icon -->
+    <link rel="shortcut icon" href="{% static 'frontpage/assets//img/icons/vl-fav-ic-1.2.svg' %}">
+
+    <!-- css file -->
+    <link rel="stylesheet" href="{% static 'frontpage/assets//css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'frontpage/assets//css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'frontpage/assets//css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'frontpage/assets//css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'frontpage/assets//css/slick-theme.css' %}">
+    <link rel="stylesheet" href="{% static 'frontpage/assets//css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'frontpage/assets//css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'frontpage/assets//css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'frontpage/assets//css/style.css' %}">
+</head>
+<body>   
+    
+
+
+    <!-- preloader  -->
+    <div class="preloader preloader2">
+        <div class="loading-container">
+        <div class="loading"></div>
+        <div id="loading-icon"><img src="{% static 'frontpage/assets//img/preloader/preloader1.png' %}" alt=""></div>
+        </div>
+    </div>
+    
+
+    <!--================= Header section start =================-->
+    <header>
+        <div id="vl-header-sticky" class="vl-header-area vl-transparent-header vl-transparent-header-4">
+            <div class="container vl-header-bg-4">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 col-md-6 col-6">
+                        <div class="vl-logo">
+                            <a href="index.html"><img src="{% static 'frontpage/assets//img/logo/govalogo2.png' %}" alt="" class="w-75"></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 d-none d-lg-block">
+                        <div class="vl-main-menu vl-main-menu-2 text-lg-end">
+                            <nav class="vl-mobile-menu-active">
+                                <ul>
+                                    <li><a href="#about">About us</a></li>
+                                    <li><a href="#service">Services</a></li>
+                                    <li><a href="#case">Features</a></li>
+                                    <!-- <li><a href="#testimonial">Testimonial</a></li>
+                                    <li><a href="#team">Our Team</a></li>
+                                    <li><a href="#contact">Contact</a></li>
+                                    <li><a href="#blog">Blog</a></li> -->
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-6">
+                        
+
+                        <div class="vl-hero-btn2 d-none d-lg-block text-lg-end">
+                            <a href="#cta" class="them-btn2">download </a>
+                         </div>
+
+                        <div class="vl-header-action-item d-block d-lg-none">
+                            <button type="button" class="vl-offcanvas-toggle">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="30" height="16" viewBox="0 0 30 16">
+                                  <rect x="10" width="20" height="2" fill="currentColor"></rect>
+                                  <rect x="5" y="7" width="25" height="2" fill="currentColor"></rect>
+                                  <rect x="10" y="14" width="20" height="2" fill="currentColor"></rect>
+                               </svg>
+                            </button>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- offcanvas menu start -->
+    <div class="vl-offcanvas">
+        <div class="vl-offcanvas-wrapper">
+            <div class="vl-offcanvas-header d-flex justify-content-between align-items-center mb-50">
+                <div class="vl-offcanvas-logo">
+                    <a href="index.html"><img src="{% static 'frontpage/assets//img/logo/govalogo2.png' %}" alt=""></a>
+                </div>
+                <div class="vl-offcanvas-close">
+                   <button class="vl-offcanvas-close-toggle"><i class="fal fa-times"></i></button>
+                </div>
+            </div>
+
+            <div class="vl-offcanvas-menu vl-offcanvas-menu-2 d-lg-none mb-40">
+                <nav></nav>
+            </div>
+
+            <div class="vl-offcanvas-btnm text-center mb-30">
+                <a href="#" class="them-btn2 w-100">get started <span><i class="fa-regular fa-angle-right"></i></span></a>
+            </div>
+
+
+            <div class="vl-offcanvas-info mb-30">
+                <h3 class="vl-offcanvas-sm-title pb-15">Contact Us</h3>
+
+                <div class="vl-offcanvas-info-box mb-15">
+                    <div class="vl-offcanvas-info-box-icon">
+                        <span><img src="{% static 'frontpage/assets//img/icons/offcanvas-ph-2.1.svg' %}" alt=""></span>
+                    </div>
+                    <div class="vl-offcanvas-info-box-text">
+                        <span><a href="tel:5799546476">+57 9954 6476</a></span>
+                    </div>
+                </div>
+
+                <div class="vl-offcanvas-info-box mb-15">
+                    <div class="vl-offcanvas-info-box-icon">
+                        <span><img src="{% static 'frontpage/assets//img/icons/offcanvas-mail-2.1.svg' %}" alt=""></span>
+                    </div>
+                    <div class="vl-offcanvas-info-box-text">
+                       <span><a href="mailto:OTechItService.com">OTech It Service.com</a></span>
+                    </div>
+                </div>
+
+                <div class="vl-offcanvas-info-box mb-15">
+                    <div class="vl-offcanvas-info-box-icon">
+                        <span><img src="{% static 'frontpage/assets//img/icons/offcanvas-lo-2.1.svg' %}" alt=""></span>
+                    </div>
+                    <div class="vl-offcanvas-info-box-text">
+                       <span><a href="mailto:OTechItService.com">8708 Technology, USA </a></span>
+                    </div>
+                </div>
+            </div>
+ 
+            <div class="vl-offcanvas-social mb-40">
+                <h3 class="vl-offcanvas-sm-title mb-15">Follow Us</h3>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+             </div>
+
+        </div>
+    </div>
+    <div class="vl-offcanvas-overlay"></div>
+    <!-- offcanvas menu end -->
+
+
+    <!--================= Header section End =================-->
+
+    <main>
+        
+    <!--================= Banner section start =================-->
+    <section class="vl-hero-area p-relative fix z-index-1 pt-200 pb-70" style="background-image: url({% static 'frontpage/assets//img/banner/vl-home-bg-2.png' %});">
+        <div class="vl--shape d-none d-md-block">
+            <img src="{% static 'frontpage/assets//img/icons/vl-cta-shape.svg' %}" alt="">
+        </div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-xl-6 mb-30">
+                    <div class="vl-hero-content p-relative z-index-1">
+                        <div class="vl-section-title-wrapper">
+                            <h4 class="vl-section-subtitle-2 fw-500">civic connect</h4>
+                            <h1 class="vl-section-heading vl-white pt-16 fw-bolder">GOVA <br><span class="text-small">(Governance for All)</span> </h1>
+                            
+                           
+                            <p class="vl-section-description section-description3  pt-16 pb-28">Powering Abia's Future one voice at a time.</p>
+                        </div>
+
+                        <div class="vl-hero-btn">
+                            <a href="contact.html" class="them-btn2 fix mr-16">Get Started <span><i class="fa-regular fa-angle-right"></i></span></a>
+                            <a href="contact.html" class="theme-sec-btn2">Download Now<span><i class="fa-regular fa-angle-right"></i></span></a>
+                             
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 mb-30 p-relative">
+                    <div class="vl-hero-half-circle">
+                        <img src="{% static 'frontpage/assets//img/shape/vl-half-cicle-2.1.svg' %}" alt="">
+                    </div>
+                    <div class="vl-hero-img--2 p-relative">
+                         <img src="{% static 'frontpage/assets//img/banner/connections.png' %}" alt="">
+                         <!-- <img src="{% static 'frontpage/assets//img/banner/interconnect.png' %}" alt=""> -->
+                        <!-- <div class="vl-hero-banner-content-2">
+                            <h4 class="vl-hero-banner-content-2-text">Help You To Grow Your Business</h4>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================= Banner section End =================-->
+
+    <!--================= About section start =================-->
+    <section id="about" class="vl-about-area pt-100 pb-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-30">
+                    <div class="vl-about-imgs-2 p-relative mr-60 aos-init aos-animate" data-aos="fade-right" data-aos-duration="900">
+                        
+                        <div class="vl-about-img--2-1 d-none d-md-block">
+                            <img src="{% static 'frontpage/assets//img/about/interconnect.png' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-30 ">
+                    <div class="vl-about-content aos-init aos-animate" data-aos="fade-left" data-aos-duration="900">
+                        <div class="vl-section-title-wrapper mt-16">
+                            <h4 class="vl-section-subtitle-black-border">About Us</h4>
+                            <h2 class="vl-section-title vl-black-theme-2 pt-16 pb-20">GOVA <br> where governance meets everyday life.</h2>
+                            <p class="vl-section-description-2 pb-32">We use AI and mobile-first tech to help citizens report issues, access services, and shape policy - all from WhatsApp, USSD, or our app.
+
+                                <br> No jargon. No barriers. Just real impact, for all.</p>
+                        </div>
+
+                        <div class="vl-about-btn">
+                            <a href="about.html" class="them-btn2">Read More<span><i class="fa-regular fa-angle-right"></i></span></a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================= About section End =================-->
+
+    <!--================= Service section start =================-->
+    <section id="service" class="vl-service-area vl-gray-bg pt-100 pb-70">
+        <div class="container">
+            <div class="vl-services aos-init aos-animate" data-aos="fade-up" data-aos-duration="900">
+                <div class="vl-section-title-wrapper mb-60">
+                    <h4 class="vl-section-subtitle-black-border">Our Features</h4>
+                    <h2 class="vl-section-title vl-black-theme-2 pt-16">Civic power, simplified. <br> Here’s how GOVA works for everyone.</h2>
+                </div>
+            </div>
+            <div class="row">
+                <!-- single service box start-->
+                <div class="col-lg-7 mb-30 aos-init aos-animate" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="vl-service-content vl-service-content-2">
+                        <div class="vl-service-icon vl-service-icon-2">
+                            <span><img src="{% static 'frontpage/assets//img/icons/vl-service-ic-2.1.svg' %}" alt=""></span>
+                        </div>
+                        <h2 class="vl-service-title pt-32"><a href="service-single.html">Reporting</a></h2>
+                        <p class="pt-16 pb-24">Raise issues in seconds — no logins, no stress. <br>
+                            Citizens can report potholes, waste, power outages, and more using The GOVA mobile app, WhatsApp, USSD, Community kiosks </p>
+                        <a href="service-single.html" class="vl-readmore">Learn More <span><i class="fa-regular fa-angle-right"></i></span></a>
+                    </div>
+                </div>
+                <!-- single service box end-->
+
+                <!-- single service box start-->
+                <div class="col-lg-5 mb-30 aos-init aos-animate" data-aos="fade-left" data-aos-duration="1200">
+                    <div class="vl-service-content vl-service-content-2">
+                        <div class="vl-service-icon vl-service-icon-2">
+                            <span><img src="{% static 'frontpage/assets//img/icons/vl-service-ic-2.2.svg' %}" alt=""></span>
+                        </div>
+                        <h2 class="vl-service-title pt-32"><a href="service-single.html">Governance</a></h2>
+                        <p class="pt-16 pb-24">Turn ideas into action.
+                            From markets to schools, citizens and leaders collaborate:
+                            Propose projects or policies
+                            Vote in polls 
+                        </p>
+                        <a href="service-single.html" class="vl-readmore">Learn More <span><i class="fa-regular fa-angle-right"></i></span></a>
+                    </div>
+                </div>
+                <!-- single service box end-->
+
+                <!-- single service box start-->
+                <div class="col-lg-5 mb-30 aos-init aos-animate" data-aos="fade-right" data-aos-duration="1400">
+                    <div class="vl-service-content vl-service-content-2">
+                        <div class="vl-service-icon vl-service-icon-2">
+                            <span><img src="{% static 'frontpage/assets//img/icons/vl-service-ic-2.3.svg' %}" alt=""></span>
+                        </div>
+                        <h2 class="vl-service-title pt-32"><a href="service-single.html">Communication</a></h2>
+                        <p class="pt-16 pb-24">Stay connected with your government. Instantly.
+                            GOVA makes government communication real-time and accessible:
+                            AI WhatsApp chatbot, USSD</p>
+                        <a href="service-single.html" class="vl-readmore">Learn More <span><i class="fa-regular fa-angle-right"></i></span></a>
+                    </div>
+                </div>
+                <!-- single service box end-->
+
+                <!-- single service box start-->
+                <div class="col-lg-7 mb-30 aos-init aos-animate" data-aos="fade-left" data-aos-duration="1600">
+                    <div class="vl-service-content vl-service-content-2">
+                        <div class="vl-service-icon vl-service-icon-2">
+                            <span><img src="{% static 'frontpage/assets//img/icons/vl-service-ic-2.4.svg' %}" alt=""></span>
+                        </div>
+                        <h2 class="vl-service-title pt-32"><a href="service-single.html">Service</a></h2>
+                        <p class="pt-16 pb-24">Smart dashboards. Smarter governance.
+                            For government officials and administrators:
+                            Dashboards for the State House, Assembly, and LGAs
+                            Natural Language Search
+                            Visual analytics and info graphs for fast decisions</p>
+                        <a href="service-single.html" class="vl-readmore">Learn More <span><i class="fa-regular fa-angle-right"></i></span></a>
+                    </div>
+                </div>
+                <!-- single service box end-->
+            </div>
+        </div>
+    </section>
+    <!--================= Service section End =================-->
+
+    <!--================= Cta section start =================-->
+    <section id="cta" class="vl-cta">
+        <div class="container">
+            <div class="vl-cta-bg-1 vl-cta-bg-2 p-relative fix br-8">
+                <div class="vl-cta-shape-2">
+                    <img src="{% static 'frontpage/assets//img/shape/vl-cta-shape-2.1.svg' %}" alt="">
+                </div>
+                <div class="vl-cta-shape">
+                    <img src="{% static 'frontpage/assets//img/icons/vl-cta-shape.svg' %}" alt="">
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="container">
+                        <h2 class="mb-3 text-warning">Get the GOVA App</h2>
+                        <p class="lead mb-4 text-white">
+                        Take civic action wherever you are — report issues, <br> vote, and  Let your voice be heard.
+                        </p>
+                        <div class="d-flex justify-content-right flex-wrap gap-3">
+                            <a href="#" target="_blank">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                                    alt="Get it on Google Play" style="height: 80px;">
+                            </a>
+                            <a href="#" target="_blank">
+                                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+                                    alt="Download on the App Store" style="height: 80px;">
+                            </a>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-6"> -->
+                        <!-- <div class="vl-cta-img aos-init aos-animate" data-aos="fade-left" data-aos-duration="900"> -->
+                            <img src="{% static 'frontpage/assets//img/about/network.png' %}" alt="" class="" style="width: 300px; height: 300px;">
+                        <!-- </div> -->
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!--================= Cta section End =================-->
+
+    </main>
+
+    <!--================= Footer section start =================-->
+    <footer>
+        <section class="vl-footer vl-gray-bg pt-240">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 mb-30">
+                        <div class="vl-footer-widget-1">
+                            <div class="vl-footer-logo">
+                                <a href="index.html"><img src="{% static 'frontpage/assets//img/logo/govalogo2.png' %}" alt=""></a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-30">
+                        <div class="vl-footer-widget-2">
+                            <h3 class="vl-footer-widget-title vl-fs-20 vl-black-theme-2 mb-20">Quick Links</h3>
+                            <div class="vl-footer-menu vl-footer-menu-2">
+                                <ul>
+                                    <li><a href="about.html">About Us</a></li>
+                                    <li><a href="service.html">Our Service</a></li>
+                                    <li><a href="case-studies.html">Our Features</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-30">
+                        <div class="vl-footer-widget-3 ml-40">
+                            <h3 class="vl-footer-widget-title vl-fs-20 vl-black-theme-2 mb-20">Our Features</h3>
+                            <div class="vl-footer-menu vl-footer-menu-2">
+                                <ul>
+                                    <li><a href="#">Reporting</a></li>
+                                    <li><a href="#">Governance</a></li>
+                                    <li><a href="#">Communication</a></li>
+                                    <li><a href="#">Services</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-30">
+                        <div class="vl-footer-widget-4">
+                            <h3 class="vl-footer-widget-title vl-fs-20 vl-black-theme-2 mb-20">Newsletter</h3>
+                            <p class="black">Subscribe us & receive our <br> latest news & articles</p>
+
+                            <div class="vl-footer-newsletter vl-footer-newsletter-2">
+                                <form action="#">
+                                    <input type="email" name="email" id="email" placeholder="Email Address..">
+                                    <div class="vl-footer-newsletter-btn-2 mt-16">
+                                        <button class="w-100 them-btn2 btn-dot">Subscribe<span><i class="fa-regular fa-angle-right"></i></span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="vl-footer-copyright-text vl-footer-copyright-text-2 text-center">
+                    <p class="m-0">Copyright &copy;2025 GOVA. All Rights Reserved</p>
+                </div>
+            </div>
+        </section>
+    </footer>
+    <!--================= Footer section End =================-->
+
+    <!-- progress -->
+    <div class="paginacontainer">
+        <div class="progress-wrap progress-wrap2">
+        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+        </svg>
+        </div>
+    </div> 
+
+    <!-- js file -->
+    <script src="{% static 'frontpage/assets//js/jquery-2.1.3.min.js' %}"></script>
+    <script src="{% static 'frontpage/assets//js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'frontpage/assets//js/fontawesome.min.js' %}"></script>
+    <script src="{% static 'frontpage/assets//js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'frontpage/assets//js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'frontpage/assets//js/waypoints.min.js' %}"></script>
+    <script src="{% static 'frontpage/assets//js/slick.min.js' %}"></script>
+    <script src="{% static 'frontpage/assets//js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'frontpage/assets//js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'frontpage/assets//js/aos.js' %}"></script>
+    <script src="{% static 'frontpage/assets//js/main.js' %}"></script>
+</body>
+</html>

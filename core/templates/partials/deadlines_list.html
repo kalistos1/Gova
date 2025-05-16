@@ -1,0 +1,81 @@
+{% if deadlines %}
+<div class="list-group list-group-flush">
+    {% for deadline in deadlines %}
+    <div class="list-group-item">
+        <div class="d-flex w-100 justify-content-between align-items-center">
+            <div>
+                <h6 class="mb-1">{{ deadline.title }}</h6>
+                <p class="mb-1 text-muted">
+                    <small>
+                        <i class="fas fa-clock"></i>
+                        Due {{ deadline.due_date|timeuntil }} from now
+                    </small>
+                </p>
+            </div>
+            {% if deadline.days_left <= 3 %}
+            <span class="badge bg-danger">Urgent</span>
+            {% elif deadline.days_left <= 7 %}
+            <span class="badge bg-warning text-dark">Soon</span>
+            {% else %}
+            <span class="badge bg-info">Upcoming</span>
+            {% endif %}
+        </div>
+        <div class="mt-2">
+            <div class="progress" style="height: 5px;">
+                <div class="progress-bar {% if deadline.days_left <= 3 %}bg-danger{% elif deadline.days_left <= 7 %}bg-warning{% else %}bg-info{% endif %}"
+                     role="progressbar"
+                     style="width: {{ deadline.progress }}%"
+                     aria-valuenow="{{ deadline.progress }}"
+                     aria-valuemin="0"
+                     aria-valuemax="100">
+                </div>
+            </div>
+            <div class="d-flex justify-content-between mt-1">
+                <small class="text-muted">Started {{ deadline.start_date|date:"M d" }}</small>
+                <small class="text-muted">Due {{ deadline.due_date|date:"M d" }}</small>
+            </div>
+        </div>
+        {% if deadline.action_url %}
+        <div class="mt-2">
+            <a href="{{ deadline.action_url }}" class="btn btn-sm btn-outline-primary">
+                <i class="fas fa-arrow-right"></i> Take Action
+            </a>
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+
+{% if deadlines.has_other_pages %}
+<div class="text-center mt-3">
+    <div class="btn-group">
+        {% if deadlines.has_previous %}
+        <button class="btn btn-sm btn-outline-secondary"
+                hx-get="{% url 'services:deadlines' %}?page={{ deadlines.previous_page_number }}"
+                hx-target="#deadlines-list">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        {% endif %}
+        
+        <button class="btn btn-sm btn-outline-secondary" disabled>
+            Page {{ deadlines.number }} of {{ deadlines.paginator.num_pages }}
+        </button>
+        
+        {% if deadlines.has_next %}
+        <button class="btn btn-sm btn-outline-secondary"
+                hx-get="{% url 'services:deadlines' %}?page={{ deadlines.next_page_number }}"
+                hx-target="#deadlines-list">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
+{% else %}
+<div class="text-center py-3">
+    <i class="fas fa-calendar-check text-muted fa-3x mb-3"></i>
+    <h6>No Upcoming Deadlines</h6>
+    <p class="text-muted small">You're all caught up!</p>
+</div>
+{% endif %} 

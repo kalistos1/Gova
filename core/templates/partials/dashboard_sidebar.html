@@ -1,0 +1,144 @@
+<!-- Dashboard Sidebar -->
+<div class="sidebar bg-dark text-light" style="min-height: calc(100vh - 56px); width: 250px;">
+    <div class="p-3">
+        <!-- User Profile Summary -->
+        <div class="text-center mb-4">
+            <img src="{{ user.profile_photo.url|default:'https://via.placeholder.com/80' }}" 
+                 alt="{{ user.get_full_name }}"
+                 class="rounded-circle mb-2"
+                 width="80" height="80">
+            <h6 class="mb-0">{{ user.get_full_name }}</h6>
+            <small class="text-muted">{{ user.role_display }}</small>
+        </div>
+        
+        <!-- Dashboard Navigation -->
+        <ul class="nav flex-column">
+            {% if user.is_government_house %}
+            <!-- Government House Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link text-light {% if active_tab == 'overview' %}active{% endif %}" 
+                   href="{% url 'dashboards:government_house' %}">
+                    <i class="fas fa-chart-line"></i> Overview
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light {% if active_tab == 'reports' %}active{% endif %}" 
+                   href="{% url 'dashboards:government_house_reports' %}">
+                    <i class="fas fa-flag"></i> Issue Reports
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light {% if active_tab == 'proposals' %}active{% endif %}" 
+                   href="{% url 'dashboards:government_house_proposals' %}">
+                    <i class="fas fa-lightbulb"></i> Proposals
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light {% if active_tab == 'services' %}active{% endif %}" 
+                   href="{% url 'dashboards:government_house_services' %}">
+                    <i class="fas fa-cogs"></i> Services
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light {% if active_tab == 'analytics' %}active{% endif %}" 
+                   href="{% url 'dashboards:government_house_analytics' %}">
+                    <i class="fas fa-chart-bar"></i> Analytics
+                </a>
+            </li>
+            {% endif %}
+            
+            {% if user.is_state_assembly %}
+            <!-- State Assembly Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link text-light {% if active_tab == 'overview' %}active{% endif %}" 
+                   href="{% url 'dashboards:state_assembly' %}">
+                    <i class="fas fa-chart-line"></i> Overview
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light {% if active_tab == 'proposals' %}active{% endif %}" 
+                   href="{% url 'dashboards:state_assembly_proposals' %}">
+                    <i class="fas fa-lightbulb"></i> Proposals
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light {% if active_tab == 'voting' %}active{% endif %}" 
+                   href="{% url 'dashboards:state_assembly_voting' %}">
+                    <i class="fas fa-vote-yea"></i> Voting
+                </a>
+            </li>
+            {% endif %}
+            
+            {% if user.is_lga_official %}
+            <!-- LGA Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link text-light {% if active_tab == 'overview' %}active{% endif %}" 
+                   href="{% url 'dashboards:lga' %}">
+                    <i class="fas fa-chart-line"></i> Overview
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light {% if active_tab == 'reports' %}active{% endif %}" 
+                   href="{% url 'dashboards:lga_reports' %}">
+                    <i class="fas fa-flag"></i> Local Issues
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light {% if active_tab == 'tasks' %}active{% endif %}" 
+                   href="{% url 'dashboards:lga_tasks' %}">
+                    <i class="fas fa-tasks"></i> Tasks
+                </a>
+            </li>
+            {% endif %}
+            
+            <!-- Citizen Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link text-light {% if active_tab == 'my_reports' %}active{% endif %}" 
+                   href="{% url 'dashboards:citizen_reports' %}">
+                    <i class="fas fa-flag"></i> My Reports
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light {% if active_tab == 'my_proposals' %}active{% endif %}" 
+                   href="{% url 'dashboards:citizen_proposals' %}">
+                    <i class="fas fa-lightbulb"></i> My Proposals
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light {% if active_tab == 'my_services' %}active{% endif %}" 
+                   href="{% url 'dashboards:citizen_services' %}">
+                    <i class="fas fa-cogs"></i> My Services
+                </a>
+            </li>
+            {% if user.is_sme_owner %}
+            <li class="nav-item">
+                <a class="nav-link text-light {% if active_tab == 'my_grants' %}active{% endif %}" 
+                   href="{% url 'dashboards:citizen_grants' %}">
+                    <i class="fas fa-hand-holding-usd"></i> My Grants
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+        
+        <!-- Quick Actions -->
+        <hr class="my-4">
+        <div class="d-grid gap-2">
+            <a href="{% url 'reports:create' %}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Report Issue
+            </a>
+            <a href="{% url 'proposals:create' %}" class="btn btn-outline-light">
+                <i class="fas fa-lightbulb"></i> Submit Proposal
+            </a>
+        </div>
+        
+        <!-- Help Section -->
+        <hr class="my-4">
+        <div class="text-center">
+            <h6 class="text-muted">Need Help?</h6>
+            <p class="small mb-2">USSD: *384*1#</p>
+            <a href="https://wa.me/2348000000000" class="btn btn-sm btn-success w-100">
+                <i class="fab fa-whatsapp"></i> WhatsApp Support
+            </a>
+        </div>
+    </div>
+</div> 

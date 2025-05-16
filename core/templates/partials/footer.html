@@ -1,0 +1,71 @@
+<footer class="footer mt-auto py-3 bg-dark text-light">
+    <div class="container">
+        <div class="row">
+            <!-- Quick Links -->
+            <div class="col-md-3">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'home' %}" class="text-light">Home</a></li>
+                    <li><a href="{% url 'reports:create' %}" class="text-light">Report Issue</a></li>
+                    <li><a href="{% url 'proposals:list' %}" class="text-light">Proposals</a></li>
+                    <li><a href="{% url 'services:list' %}" class="text-light">Services</a></li>
+                </ul>
+            </div>
+            
+            <!-- Contact Info -->
+            <div class="col-md-3">
+                <h5>Contact Us</h5>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-phone"></i> USSD: *384*1#</li>
+                    <li><i class="fas fa-envelope"></i> info@abiahub.gov.ng</li>
+                    <li><i class="fab fa-whatsapp"></i> WhatsApp Support</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Government House, Umuahia</li>
+                </ul>
+            </div>
+            
+            <!-- Resources -->
+            <div class="col-md-3">
+                <h5>Resources</h5>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'help' %}" class="text-light">Help Center</a></li>
+                    <li><a href="{% url 'faq' %}" class="text-light">FAQs</a></li>
+                    <li><a href="{% url 'privacy' %}" class="text-light">Privacy Policy</a></li>
+                    <li><a href="{% url 'terms' %}" class="text-light">Terms of Service</a></li>
+                </ul>
+            </div>
+            
+            <!-- Download App -->
+            <div class="col-md-3">
+                <h5>Mobile App</h5>
+                <p>Download the AbiaHub mobile app:</p>
+                <div class="mb-2">
+                    <a href="#" class="btn btn-outline-light btn-sm">
+                        <i class="fab fa-google-play"></i> Google Play
+                    </a>
+                </div>
+                <div>
+                    <a href="#" class="btn btn-outline-light btn-sm">
+                        <i class="fab fa-apple"></i> App Store
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <hr class="my-4">
+        
+        <!-- Bottom Footer -->
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-start">
+                <p class="mb-0">&copy; {% now "Y" %} AbiaHub. All rights reserved.</p>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                <div class="social-links">
+                    <a href="#" class="text-light me-3"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-light me-3"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-light"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer> 

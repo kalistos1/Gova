@@ -1,0 +1,126 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <!-- Brand -->
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static 'images/logo.png' %}" alt="AbiaHub" height="30">
+            AbiaHub
+        </a>
+        
+        <!-- Mobile Toggle -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- Main Menu -->
+        <div class="collapse navbar-collapse" id="navbarMain">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <!-- Public Links -->
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" 
+                       href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'report_issue' %}active{% endif %}" 
+                       href="{% url 'reports:create' %}">Report Issue</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'proposals' %}active{% endif %}" 
+                       href="{% url 'proposals:list' %}">Proposals</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'services' %}active{% endif %}" 
+                       href="{% url 'services:list' %}">Services</a>
+                </li>
+                
+                <!-- Dashboard Links (Role-based) -->
+                {% if user.is_authenticated %}
+                    {% if user.role == 'government_house' %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboards:government_house' %}">Government House Dashboard</a>
+                    </li>
+                    {% elif user.role == 'state_assembly' %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboards:state_assembly' %}">State Assembly Dashboard</a>
+                    </li>
+                    {% elif user.role == 'lga_official' %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboards:lga' %}">LGA Dashboard</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboards:citizen' %}">My Dashboard</a>
+                    </li>
+                    {% endif %}
+                {% endif %}
+            </ul>
+            
+            <!-- Right Menu -->
+            <ul class="navbar-nav ms-auto">
+                <!-- Language Selector -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                        <i class="fas fa-language"></i> {{ LANGUAGE_CODE|upper }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="{% url 'set_language' %}?lang=en">English</a></li>
+                        <li><a class="dropdown-item" href="{% url 'set_language' %}?lang=ig">Igbo</a></li>
+                        <li><a class="dropdown-item" href="{% url 'set_language' %}?lang=pcm">Pidgin</a></li>
+                    </ul>
+                </li>
+                
+                <!-- User Menu -->
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                        <i class="fas fa-user"></i> {{ user.get_full_name|default:user.username }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="{% url 'accounts:profile' %}">Profile</a></li>
+                        <li><a class="dropdown-item" href="{% url 'accounts:settings' %}">Settings</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <form method="post" action="{% url 'accounts:logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="dropdown-item">Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:register' %}">Register</a>
+                </li>
+                {% endif %}
+                
+                <!-- Notifications -->
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" 
+                       data-bs-toggle="dropdown"
+                       hx-get="{% url 'notifications:list' %}"
+                       hx-trigger="click"
+                       hx-target="#notifications-list">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge bg-danger rounded-pill" id="notification-count">
+                            {{ unread_notifications_count }}
+                        </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end" style="width: 300px;">
+                        <div id="notifications-list">
+                            <div class="text-center p-3">
+                                <div class="spinner-border spinner-border-sm"></div>
+                                Loading notifications...
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav> 

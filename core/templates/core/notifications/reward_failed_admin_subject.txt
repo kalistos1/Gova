@@ -1,0 +1,1 @@
+[AbiaHub Admin] Failed Reward Processing: {{ reward.id }} - {{ user.email }} 
